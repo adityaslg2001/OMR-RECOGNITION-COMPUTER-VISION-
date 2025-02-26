@@ -24,7 +24,7 @@ while True:
     else:img = cv2.imread(pathImage)
     img = cv2.resize(img, (widthImg, heightImg)) # RESIZE IMAGE
     imgFinal = img.copy()
-    imgBlank = np.zeros((heightImg,widthImg, 3), np.uint8) # CREATE A BLANK IMAGE FOR TESTING DEBUGGING IF REQUIRED
+    imgBlank = np.zeros((heightImg,widthImg, 3), np.uint8) 
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # CONVERT IMAGE TO GRAY SCALE
     imgBlur = cv2.GaussianBlur(imgGray, (5, 5), 1) # ADD GAUSSIAN BLUR
     imgCanny = cv2.Canny(imgBlur,10,70) # APPLY CANNY 
@@ -81,7 +81,7 @@ while True:
                 arr = myPixelVal[x]
                 myIndexVal = np.where(arr == np.amax(arr))
                 myIndex.append(myIndexVal[0][0])
-            #print("USER ANSWERS",myIndex)
+            #print("ANSWERS",myIndex)
 
             # COMPARE THE VALUES TO FIND THE CORRECT ANSWERS
             grading=[]
@@ -127,7 +127,7 @@ while True:
     stackedImage = utlis.stackImages(imageArray,0.5,lables)
     # cv2.imshow("Result",stackedImage)
 
-    # SAVE IMAGE WHEN 's' key is pressed
+    # SAVE WHEN 's' key is pressed
     if cv2.waitKey(1) & 0xFF == ord('s'):
         cv2.imwrite("myImage" + str(count) + ".jpg", imgFinal)
         cv2.rectangle(stackedImage, ((int(stackedImage.shape[1] / 2) - 230), int(stackedImage.shape[0] / 2) + 50),
